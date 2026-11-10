@@ -1,0 +1,29 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.example.ethernetcameraviewer'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId 'com.example.ethernetcameraviewer'
+        minSdk 29
+        targetSdk 32
+        versionCode 1
+        versionName '1.0'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    def media3Version = '1.5.1'
+    implementation "androidx.media3:media3-exoplayer:${media3Version}"
+    implementation "androidx.media3:media3-exoplayer-rtsp:${media3Version}"
+    implementation "androidx.media3:media3-exoplayer-hls:${media3Version}"
+    implementation "androidx.media3:media3-ui:${media3Version}"
+}

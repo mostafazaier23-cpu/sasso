@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootScroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="14dp">
+
+        <LinearLayout
+            android:id="@+id/headerArea"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="●  ETHERNET CAMERA VIEWER"
+                android:textColor="@color/accent"
+                android:textSize="12sp"
+                android:letterSpacing="0.13" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Your camera. Your network."
+                android:textColor="@color/primary_text"
+                android:textStyle="bold"
+                android:textSize="23sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/networkStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/card_bg"
+            android:padding="12dp"
+            android:text="Checking Ethernet..."
+            android:textColor="@color/secondary_text"
+            android:textSize="13sp" />
+
+        <FrameLayout
+            android:id="@+id/videoFrame"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:background="#04070E">
+
+            <androidx.media3.ui.PlayerView
+                android:id="@+id/videoPlayer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                app:use_controller="false"
+                app:surface_type="texture_view"
+                app:resize_mode="fit" />
+
+            <ImageView
+                android:id="@+id/jpegPlayer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="Camera video preview"
+                android:scaleType="fitCenter"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/emptyScreen"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="30dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="◉"
+                    android:textColor="@color/accent"
+                    android:textSize="48sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:gravity="center"
+                    android:text="No live feed yet"
+                    android:textColor="@color/primary_text"
+                    android:textStyle="bold"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="Connect to a network camera below"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/liveIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|start"
+                android:layout_margin="12dp"
+                android:background="@drawable/card_bg"
+                android:padding="7dp"
+                android:text="●  DISCONNECTED"
+                android:textColor="@color/amber"
+                android:textStyle="bold"
+                android:textSize="11sp" />
+
+            <Button
+                android:id="@+id/fullscreenButton"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="top|end"
+                android:layout_margin="8dp"
+                android:background="@drawable/button_secondary"
+                android:backgroundTint="@null"
+                android:minWidth="40dp"
+                android:text="⛶"
+                android:textSize="22sp"
+                android:textColor="@color/white" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/playbackStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:padding="5dp"
+            android:text="Ready — enter your camera stream URL"
+            android:textColor="@color/secondary_text"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:id="@+id/controlsArea"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/card_bg"
+            android:orientation="vertical"
+            android:padding="14dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CAMERA CONNECTION"
+                android:textColor="@color/accent"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:letterSpacing="0.1" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="Video protocol"
+                android:textColor="@color/secondary_text"
+                android:textSize="12sp" />
+
+            <Spinner
+                android:id="@+id/protocolSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/field_bg"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Stream URL"
+                android:textColor="@color/secondary_text"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/streamUrl"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/field_bg"
+                android:hint="rtsp://192.168.1.100:554/your-path"
+                android:inputType="textUri|textNoSuggestions"
+                android:maxLines="1"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:singleLine="true"
+                android:textColor="@color/primary_text"
+                android:textColorHint="@color/secondary_text"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Username (optional)"
+                        android:textColor="@color/secondary_text"
+                        android:textSize="12sp" />
+
+                    <EditText
+                        android:id="@+id/username"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/field_bg"
+                        android:hint="admin"
+                        android:inputType="textNoSuggestions"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:singleLine="true"
+                        android:textColor="@color/primary_text"
+                        android:textColorHint="@color/secondary_text"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Password (not saved)"
+                        android:textColor="@color/secondary_text"
+                        android:textSize="12sp" />
+
+                    <EditText
+                        android:id="@+id/password"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/field_bg"
+                        android:hint="Password"
+                        android:inputType="textPassword"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:singleLine="true"
+                        android:textColor="@color/primary_text"
+                        android:textColorHint="@color/secondary_text"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <CheckBox
+                android:id="@+id/forceEthernet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:buttonTint="@color/accent"
+                android:checked="true"
+                android:text="Prefer wired Ethernet (even without internet)"
+                android:textColor="@color/primary_text"
+                android:textSize="13sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/connectButton"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="2"
+                    android:background="@drawable/button_primary"
+                    android:backgroundTint="@null"
+                    android:text="▶  CONNECT"
+                    android:textColor="@color/dark"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/stopButton"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_secondary"
+                    android:backgroundTint="@null"
+                    android:text="STOP"
+                    android:textColor="@color/primary_text" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/discoverButton"
+                    android:layout_width="0dp"
+                    android:layout_height="46dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_secondary"
+                    android:backgroundTint="@null"
+                    android:text="FIND CAMERAS"
+                    android:textColor="@color/primary_text"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/snapshotButton"
+                    android:layout_width="0dp"
+                    android:layout_height="46dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_secondary"
+                    android:backgroundTint="@null"
+                    android:text="SAVE PHOTO"
+                    android:textColor="@color/primary_text"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/helpArea"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="No internet is needed: the camera and tablet only need to be reachable on the same local network.\nIf discovery finds an IP, you still need its correct video path and credentials."
+                android:textColor="@color/secondary_text"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/settingsButton"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/button_secondary"
+                android:backgroundTint="@null"
+                android:text="OPEN ANDROID NETWORK SETTINGS"
+                android:textColor="@color/primary_text"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
